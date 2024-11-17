@@ -1,27 +1,4 @@
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
-
-# include <iostream>
-# include <string>
-
-class  Bureaucrat
-{
-private:
-	const std::string	_name;
-	int					_grade;
-public:
-	Bureaucrat();
-	Bureaucrat(std::string name, int grade);
-	Bureaucrat(const Bureaucrat &org);
-	~ Bureaucrat();
-
-	std::string	getName();
-	int			getGrade();
-	void		inmcrement();
-	void		decrement();
-
-	Bureaucrat &operator=(const Bureaucrat & org);
-};
+#include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name("default"), _grade(150)
 {
@@ -43,10 +20,14 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat & org)
 	return (*this);
 }
 
-Bureaucrat::Bureaucrat(std::string name, int grade): _name(name), _grade(grade)
-
+Bureaucrat::Bureaucrat(std::string name, int grade): _name(name)
 {
 	std::cout << "constructor called: Bureaucrat named " << _name << std::endl;
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	this->_grade = grade;
 }
 
 Bureaucrat::~ Bureaucrat()
@@ -66,11 +47,23 @@ int	Bureaucrat::getGrade()
 
 void		Bureaucrat::inmcrement()
 {
+	if (_grade - 1 < 1)
+		throw Bureaucrat::GradeTooHighException();
 	_grade -= 1;
 }
 void		Bureaucrat::decrement()
 {
+	if (_grade + 1 > 150)
+		throw Bureaucrat::GradeTooLowException();
 	_grade += 1;
 }
 
-#endif
+const char	*Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Error\nGrade too high";
+}
+
+const char	*Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Error\nGrade too low";
+}
