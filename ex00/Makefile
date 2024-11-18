@@ -3,17 +3,17 @@ INCLUDE = ./include
 
 file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp)
 
-NAME = Polymorphism
+NAME =  bureaucrat
 
 cc = c++
 flag = -Wall -Wextra -Werror -std=c++98 -g
-fileobj = $(file:.c = .o)
+fileobj = $(file:.cpp=.o)
 all : $(NAME)
 
+.cpp.o:
+	$(cc) $(flag) -I$(INCLUDE) -c $< -o $@
 $(NAME) : $(fileobj)
 			$(cc) $(flag) -I$(INCLUDE) $(fileobj) -o $(NAME)
-%.o: %.c 
-	$(cc) $(flag) -I$(INCLUDE) -c $< -o $@
 
 clean:
 			@echo "nothing to clean"
