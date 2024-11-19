@@ -1,7 +1,7 @@
 SRC = ./src/
 INCLUDE = ./include
 
-file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp Form.cpp)
+file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp)
 
 NAME =  bureaucrat
 

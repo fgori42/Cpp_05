@@ -1,40 +1,23 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	Bureaucrat *hon;
+	Bureaucrat	john("jon", 50);
+	Form		bt("b 52", 78, 100);
 	try
 	{
-		hon = new Bureaucrat("jon", 151);
+		Form		tol("tolusso", 151, 50);
 	}
 	catch (std::exception &error)
 	{
 		std::cerr << error.what() << std::endl;
 	}
-	std::cout << "-------" << std::endl;
-	hon = new Bureaucrat("Michael", 1);
+	std::cout << john;
+	std::cout << bt;
+	std::cout << std::endl;
+	john.signForm(bt);
+	john.signForm(bt);
 	
-	try
-	{
-		hon->decrement();
-	}
-	catch (const std::exception &error)
-	{
-		std::cerr << error.what() << std::endl;
-	}
-	std::cout << *hon;
-	std::cout << "-------" << std::endl;
-	try
-	{
-		for(int i= 5; i > 0; i--)
-			hon->increment();
-	}
-	catch (const std::exception &error)
-	{
-		std::cerr << error.what() << std::endl;
-	}
-
-	std::cout << *hon;
-	delete(hon);
 	return(0);
 }

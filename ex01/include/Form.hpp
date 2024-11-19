@@ -7,6 +7,8 @@
 # include <exception>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class	Form
 {
 private:
@@ -21,6 +23,11 @@ public:
 	~Form();
 
 	Form &operator=(const Form &org);
+
+	std::string	getName();
+	bool		getStatus();
+	int			getSignGrade();
+	int			getExeGrade();
 
 	void beSigned(Bureaucrat &buro);
 

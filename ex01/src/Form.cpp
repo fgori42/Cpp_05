@@ -31,20 +31,53 @@ Form &Form::operator=(const Form &org)
 	return (*this);
 }
 
+std::string	Form::getName()
+{
+	return _name;
+}
+bool	Form::getStatus()
+{
+	return _sign;
+}
+int	Form::getSignGrade()
+{
+	return _gradeToSign;
+}
+int	Form::getExeGrade()
+{
+	return _gradeToExe;
+}
+
 void Form::beSigned(Bureaucrat &buro)
 {
-	if (buro.getGrade() < _gradeToSign)
-		_sign = true;
+	if (_sign == false)
+	{
+		if (buro.getGrade() <= _gradeToSign)
+			_sign = true;
+		else
+			throw Form::GradeTooLowException();
+	}
 	else
-		throw Form::GradeTooLowException();
+		throw "form already signed";
 }
 
 const char *Form::GradeTooHighException::what() const throw()
 {
-	return "Error\nGrade too high";
+	return "Error\nGrade too high for the form";
 }
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return "Error\nGrade too low";
+	return "Error\nGrade too low for the form";
+}
+
+std::ostream &operator<<(std::ostream &out, Form &form)
+{
+	std::cout << "Form name:" << form.getName() << std::endl << "Form state:";
+	if (form.getStatus())
+		std::cout << "signed" << std::endl;
+	else
+		std::cout << "not signed" << std::endl;
+	std::cout << "Form grade to be signed: " << form.getSignGrade() <<std::endl << "Form grade for execution: " << form.getExeGrade() << std::endl;
+	return (out);
 }
