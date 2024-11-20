@@ -1,15 +1,16 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
 	Bureaucrat	john("Paolo", 50);
 	Bureaucrat	ad("Augusto de'Marinis", 10);
-	Form		bt("b 52", 60, 100);
-	Form		c("c14", 30, 110);
+	PresidentialPardonForm	bt;
+	AForm		c("c14", 30, 110);
 	try
 	{
-		Form		tol("tolusso", 151, 50);
+		AForm		tol("tolusso", 151, 50);
 	}
 	catch (std::exception &error)
 	{

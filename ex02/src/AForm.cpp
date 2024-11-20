@@ -1,28 +1,28 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(): _name("default"), _sign(false), _gradeToSign(150), _gradeToExe(150)
+AForm::AForm(): _name("default"), _sign(false), _gradeToSign(150), _gradeToExe(150)
 {
 	std::cout << "default costructor called" << std::endl;
 }
-Form::Form(std::string name, int sign, int exe): _name(name), _sign(false), _gradeToSign(sign), _gradeToExe(exe)
+AForm::AForm(std::string name, int sign, int exe): _name(name), _sign(false), _gradeToSign(sign), _gradeToExe(exe)
 {
 	std::cout << "costructor of form called name " << _name <<std::endl;
 	if (_gradeToSign < 0 || _gradeToExe < 0)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (_gradeToSign > 150 || _gradeToExe > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }
 
-Form::Form(const Form &org): _name(org._name), _sign(org._sign), _gradeToSign(org._gradeToSign), _gradeToExe(org._gradeToExe)
+AForm::AForm(const AForm &org): _name(org._name), _sign(org._sign), _gradeToSign(org._gradeToSign), _gradeToExe(org._gradeToExe)
 {
 	std::cout << "cloning costructor called" << std::endl;
 }
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << _name << "'s destructor called" << std::endl;
 }
 
-Form &Form::operator=(const Form &org)
+AForm &AForm::operator=(const AForm &org)
 {
 	if (&org != this)
 	{
@@ -31,52 +31,52 @@ Form &Form::operator=(const Form &org)
 	return (*this);
 }
 
-std::string	Form::getName()
+std::string	AForm::getName()
 {
 	return _name;
 }
-bool	Form::getStatus()
+bool	AForm::getStatus()
 {
 	return _sign;
 }
-int	Form::getSignGrade()
+int	AForm::getSignGrade()
 {
 	return _gradeToSign;
 }
-int	Form::getExeGrade()
+int	AForm::getExeGrade()
 {
 	return _gradeToExe;
 }
 
-void Form::beSigned(Bureaucrat &buro)
+void AForm::beSigned(Bureaucrat &buro)
 {
 	if (_sign == false)
 	{
 		if (buro.getGrade() <= _gradeToSign)
 			_sign = true;
 		else
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 	}
 	else
-		throw Form::IsSignedForm();
+		throw AForm::IsSignedForm();
 }
 
-const char *Form::GradeTooHighException::what() const throw()
+const char *AForm::GradeTooHighException::what() const throw()
 {
 	return "Error:: Grade too high for the form";
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return "Error:: Grade too low for the form";
 }
 
-const char *Form::IsSignedForm::what() const throw()
+const char *AForm::IsSignedForm::what() const throw()
 {
 	return "the form is already signed";
 }
 
-std::ostream &operator<<(std::ostream &out, Form &form)
+std::ostream &operator<<(std::ostream &out, AForm &form)
 {
 	std::cout << "Form name:" << form.getName() << std::endl << "Form state:";
 	if (form.getStatus())
