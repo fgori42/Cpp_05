@@ -24,10 +24,12 @@ public:
 
 	AForm &operator=(const AForm &org);
 
-	std::string	getName();
-	bool		getStatus();
-	int			getSignGrade();
-	int			getExeGrade();
+	std::string	getName() const;
+	bool		getStatus() const;
+	int			getSignGrade() const;
+	int			getExeGrade() const;
+	
+	virtual void		execute(Bureaucrat const & executor) const;
 
 	void beSigned(Bureaucrat &buro);
 
@@ -44,6 +46,12 @@ public:
 	};
 
 	class IsSignedForm : public std::exception
+	{
+		public:
+			const char *what() const throw();
+	};
+
+	class IsnSignedForm : public std::exception
 	{
 		public:
 			const char *what() const throw();

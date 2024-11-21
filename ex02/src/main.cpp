@@ -1,13 +1,15 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
-	Bureaucrat	john("Paolo", 50);
-	Bureaucrat	ad("Augusto de'Marinis", 10);
-	PresidentialPardonForm	bt;
-	AForm		c("c14", 30, 110);
+	Bureaucrat	ad("Augusto de'Marinis", 5);
+	AForm		*bt = new PresidentialPardonForm("geller");
+	//PresidentialPardonForm ji("geller");
+
+	//bt = &ji;
 	try
 	{
 		AForm		tol("tolusso", 151, 50);
@@ -16,12 +18,23 @@ int main()
 	{
 		std::cerr << error.what() << std::endl;
 	}
-	std::cout << john;
-	std::cout << bt;
+	std::cout << *bt;
 	std::cout << std::endl;
-	john.signForm(bt);
-	john.signForm(bt);
-	john.signForm(c);
-	ad.signForm(c);
+	ad.signForm(*bt);
+	std::cout << std::endl;
+	ad.executeForm(*bt);
+	//delete(bt);
+	bt = new RobotomyRequestForm("luca");
+	std::cout << std::endl;
+	std::cout << std::endl;
+	ad.signForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	ad.executeForm(*bt);
+	
 	return(0);
 }

@@ -37,12 +37,12 @@ Bureaucrat::~Bureaucrat()
 }
 
 
-std::string	Bureaucrat::getName()
+std::string	Bureaucrat::getName() const
 {
 	return _name;
 }
 
-int	Bureaucrat::getGrade()
+int	Bureaucrat::getGrade() const
 {
 	return _grade;
 }
@@ -83,6 +83,21 @@ void	Bureaucrat::signForm(AForm &form)
 		std::cerr << _name << " couldn’t sign " << form.getName() << " because " <<error.what() << std::endl;
 	}
 
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << _name << " can't execute the form because ";
+		std::cerr << e.what() << '\n';
+	}
+	
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &buro)

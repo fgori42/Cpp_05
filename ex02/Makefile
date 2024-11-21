@@ -1,7 +1,8 @@
 SRC = ./src/
 INCLUDE = ./include
 
-file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp)
+file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp\
+				RobotomyRequestForm.cpp )
 
 NAME =  form_up
 

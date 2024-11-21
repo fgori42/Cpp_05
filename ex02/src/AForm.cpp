@@ -31,19 +31,19 @@ AForm &AForm::operator=(const AForm &org)
 	return (*this);
 }
 
-std::string	AForm::getName()
+std::string	AForm::getName() const
 {
 	return _name;
 }
-bool	AForm::getStatus()
+bool	AForm::getStatus() const
 {
 	return _sign;
 }
-int	AForm::getSignGrade()
+int	AForm::getSignGrade() const
 {
 	return _gradeToSign;
 }
-int	AForm::getExeGrade()
+int	AForm::getExeGrade() const
 {
 	return _gradeToExe;
 }
@@ -74,6 +74,21 @@ const char *AForm::GradeTooLowException::what() const throw()
 const char *AForm::IsSignedForm::what() const throw()
 {
 	return "the form is already signed";
+}
+
+const char *AForm::IsnSignedForm::what() const throw()
+{
+	return "the form isn't signed";
+}
+
+void		AForm::execute(Bureaucrat const & executor) const
+{
+	if (!this->getStatus())
+		throw AForm::IsnSignedForm();
+	if (this->_gradeToExe < executor.getGrade())
+		throw AForm::GradeTooLowException();
+	std::cout << "Form sucselfully executed" << std::endl;
+
 }
 
 std::ostream &operator<<(std::ostream &out, AForm &form)
