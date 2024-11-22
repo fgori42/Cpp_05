@@ -7,35 +7,30 @@
 int main()
 {
 	Bureaucrat	ad("Augusto de'Marinis", 5);
+	Bureaucrat	ln("Luca Nervi", 70);
 	AForm		*bt = new PresidentialPardonForm("geller");
-	//PresidentialPardonForm ji("geller");
-
-	//bt = &ji;
-	try
-	{
-		AForm		tol("tolusso", 151, 50);
-	}
-	catch (std::exception &error)
-	{
-		std::cerr << error.what() << std::endl;
-	}
+	
 	std::cout << *bt;
-	std::cout << std::endl;
-	ad.signForm(*bt);
-	std::cout << std::endl;
+	//ad.signForm(*bt);
 	ad.executeForm(*bt);
+	delete(bt);
+	std::cout << std::endl;
+	std::cout << std::endl;
 	//delete(bt);
 	bt = new RobotomyRequestForm("luca");
+	std::cout << *bt;
+	ln.signForm(*bt);
+	ln.executeForm(*bt);
+	ln.executeForm(*bt);
+	ln.executeForm(*bt);
+	delete(bt);
 	std::cout << std::endl;
 	std::cout << std::endl;
-	ad.signForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	ad.executeForm(*bt);
-	
+	std::cout << std::endl;
+	bt = new ShrubberyCreationForm("Crismas");
+	std::cout << *bt;
+	ln.signForm(*bt);
+	ln.executeForm(*bt);
+	delete(bt);
 	return(0);
 }
