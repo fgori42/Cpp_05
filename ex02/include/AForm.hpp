@@ -29,7 +29,7 @@ public:
 	int			getSignGrade() const;
 	int			getExeGrade() const;
 	
-	virtual void		execute(Bureaucrat const & executor) const;
+	virtual void		execute(Bureaucrat const & executor) const = 0;
 
 	void beSigned(Bureaucrat &buro);
 
