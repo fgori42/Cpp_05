@@ -3,7 +3,7 @@ INCLUDE = ./include
 
 file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp Form.cpp)
 
-NAME = right_form
+NAME = form_up
 
 cc = c++
 flag = -Wall -Wextra -Werror -std=c++98 -g
