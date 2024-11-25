@@ -57,6 +57,5 @@ AForm	*Intern::makeForm(std::string type, std::string _target)
 			return new ShrubberyCreationForm(_target);
 		}
 	}
-	//std::cout << "Intern can'tcreate " << type << ", it isn't a valid type of Form" << std::endl;
 	throw IsNotValid();
 }

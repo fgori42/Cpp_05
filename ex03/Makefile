@@ -4,7 +4,7 @@ INCLUDE = ./include
 file = $(addprefix $(SRC), main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp\
 				RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp)
 
-NAME =  form_up
+NAME =  intern
 
 cc = c++
 flag = -Wall -Wextra -Werror -std=c++98 -g

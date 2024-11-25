@@ -16,6 +16,7 @@ int main()
 	{
 		bt = maya.makeForm("Robotomy request", "bender");
 		ln.signForm(*bt);
+		ln.executeForm(*bt);
 		delete(bt);
 		bt = maya.makeForm("asd", "luca");
 		std::cout << "ciao" << std::endl;
